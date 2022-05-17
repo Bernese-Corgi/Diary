@@ -93,7 +93,7 @@ export const GlobalStyle = createGlobalStyle`
     vertical-align: baseline;
   }
   html {
-    font-size: 10px;
+    font-size: 14px;
     color: ${theme.colors.black.dark};
   }
   body,
