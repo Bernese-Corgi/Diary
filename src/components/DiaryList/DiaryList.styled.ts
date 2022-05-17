@@ -1,9 +1,7 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import theme from '../../style/theme';
 
-export const DiaryItemLink = styled(Link)`
-  display: inline-block;
+export const DiaryItemLi = styled.li`
   margin-top: 2.5em;
   padding: 0.8em;
   width: 100%;
@@ -36,4 +34,8 @@ export const DiaryItemLink = styled(Link)`
 export const DiaryListWrapper = styled.div`
   width: 100%;
   margin: 0 auto;
+
+  li {
+    cursor: pointer;
+  }
 `;
