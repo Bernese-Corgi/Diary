@@ -18,6 +18,45 @@ const colors = {
   blue: '#00498C',
 };
 
+const commonStyle = {
+  boxWrapper: `
+    position: relative;
+
+    &::after {
+      content: '';
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+      border: 1px solid ${colors.black.base};
+      border-radius: 5px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+    
+    .title {
+      position: absolute;
+      top: -0.8em;
+      font-size: 1.1em;
+      display: inline-block;
+      background-color: #fff;
+      margin-left: 1em;
+      border-radius: 5px;
+    }
+
+    .date {
+      text-align: right;
+    }
+  `,
+  transition: `
+    transition: 300ms;
+    transition-timing-function: 'ease-in-out';
+    -webkit-transition: 300ms;
+    -webkit-transition-timing-function: 'ease-in-out';
+  `,
+};
+
 /* --------------------------- Responsive setting --------------------------- */
 const sizes = {
   mobile: 320,
@@ -73,6 +112,7 @@ Object.keys(sizes).reduce((acc: Media, label: string) => {
 
 const theme: DefaultTheme = {
   colors,
+  commonStyle,
   sizes,
   media,
 };

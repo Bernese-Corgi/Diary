@@ -14,6 +14,10 @@ declare module 'styled-components' {
       green: string;
       blue: string;
     };
+    commonStyle: {
+      boxWrapper: string;
+      transition: string;
+    };
     sizes: {
       [key: string]: number;
     };
