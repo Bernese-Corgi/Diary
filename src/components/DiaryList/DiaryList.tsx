@@ -11,7 +11,7 @@ interface DiaryListProps {
 
 interface DiaryItemProps {
   diary: DiaryType;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const DiaryItem = ({ diary, onClick, ...restProps }: DiaryItemProps) => (
