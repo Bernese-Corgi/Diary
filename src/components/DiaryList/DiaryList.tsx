@@ -8,21 +8,11 @@ import {
   useEffect,
 } from 'react';
 import { DiaryListType, DiaryType } from 'types/dataType';
-import { dateToStringKr } from 'utils/date';
-import DiaryDetail from 'components/DiaryDetail/DiaryDetail';
-import {
-  LoadingWrapper,
-  DiaryItemLi,
-  DiaryListWrapper,
-} from './DiaryList.styled';
+import { LoadingWrapper, DiaryListWrapper } from './DiaryList.styled';
+import { DiaryDetail, DiaryItem } from 'components';
 
 interface DiaryListProps {
   diaries: DiaryListType;
-}
-
-interface DiaryItemProps {
-  diary: DiaryType;
-  onClick?: () => void;
 }
 
 export interface InfinteLoadingProps {
@@ -42,16 +32,6 @@ const InfinteLoading = forwardRef<HTMLDivElement, InfinteLoadingProps>(
     );
   }
 );
-
-const DiaryItem = ({ diary, onClick, ...restProps }: DiaryItemProps) => {
-  return (
-    <DiaryItemLi onClick={onClick} {...restProps}>
-      <p className="title">{diary.title}</p>
-      <p className="contents">{diary.contents}</p>
-      <p className="date">{dateToStringKr(diary.created_at)}</p>
-    </DiaryItemLi>
-  );
-};
 
 const DiaryList = ({ diaries }: DiaryListProps) => {
   /* click diary ------------------------------------------------------------- */
