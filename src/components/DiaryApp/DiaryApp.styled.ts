@@ -1,5 +1,5 @@
-import theme from 'style/theme';
 import styled from 'styled-components';
+import theme from 'style/theme';
 
 export const NewUpdatedAlertWrapper = styled.div`
   height: 100px;
