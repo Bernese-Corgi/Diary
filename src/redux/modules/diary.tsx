@@ -11,11 +11,11 @@ export enum ActionType {
   READ_ALL_DIARY_ERROR = 'READ_ALL_DIARY_ERROR',
 }
 
-export const readAllDiaryAsync = () => async dispatch => {
+export const readAllDiaryAsync = (url: string) => async dispatch => {
   dispatch({ type: READ_ALL_DIARY });
 
   try {
-    const response = await axios.get('/data1/work1.json');
+    const response = await axios.get(url);
 
     dispatch({
       type: READ_ALL_DIARY_SUCCESS,
