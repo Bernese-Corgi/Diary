@@ -1,8 +1,7 @@
 import { useRef, useState, ChangeEvent } from 'react';
 import { UpdatedDiariesType } from 'container/DiaryListContainer';
 import { DiaryListType, DiaryType } from 'types/dataType';
-import { DiaryList, Searchbar } from 'components';
-import { NewUpdatedAlertWrapper } from './DiaryApp.styled';
+import { DiaryList, FilteredDiaryList, Searchbar } from 'components';
 
 interface DiaryAppProps {
   allDiaries: DiaryListType;
@@ -41,19 +40,15 @@ const DiaryApp = ({ allDiaries, updatedDiaries }: DiaryAppProps) => {
         onChageInput={handleChangeInput}
         onClickResetButton={handleClickResetButton}
       />
-      {/* 새로운 데이터가 업데이트 시 렌더링 */}
-      {updatedDiaries?.length && (
-        <NewUpdatedAlertWrapper>
-          <p>
-            새로운 데이터가
-            <span className="highlight">
-              {' ' + updatedDiaries.length + ' '}
-            </span>
-            개 있습니다.
-          </p>
-        </NewUpdatedAlertWrapper>
+
+      {searchValue ? (
+        <FilteredDiaryList
+          filteredDiaries={filteredDiaries}
+          searchValue={searchValue}
+        />
+      ) : (
+        <DiaryList diaries={allDiaries} updatedDiaries={updatedDiaries} />
       )}
-      <DiaryList diaries={searchValue ? filteredDiaries : allDiaries} />
     </>
   );
 };
