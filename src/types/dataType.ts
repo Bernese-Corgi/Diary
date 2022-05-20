@@ -4,4 +4,4 @@ export type DiaryType = {
   created_at: string;
 };
 
-export type DiaryListType = DiaryType[];
+export type DiaryListType = DiaryType[] | null;
