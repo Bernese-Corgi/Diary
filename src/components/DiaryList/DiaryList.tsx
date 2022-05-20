@@ -177,7 +177,7 @@ const DiaryList = ({ diaries, updatedDiaries }: DiaryListProps) => {
 
   // {/* 새로운 데이터가 업데이트 시 렌더링 */}
   return (
-    <div>
+    <>
       {updatedDiaries?.length && (
         <NewUpdatedAlertWrapper>
           <p>
@@ -214,7 +214,7 @@ const DiaryList = ({ diaries, updatedDiaries }: DiaryListProps) => {
           <DiaryDetail diary={matchDiary} onClose={handleCloseDiary} />
         )}
       </DiaryListWrapper>
-    </div>
+    </>
   );
 };
 
