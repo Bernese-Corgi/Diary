@@ -1,46 +1,41 @@
-# Getting Started with Create React App
+# 일기 웹사이트 제작
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 요구사항 및 구현
 
-## Available Scripts
+### 페이지 1
 
-In the project directory, you can run:
+![페이지 1](https://user-images.githubusercontent.com/72931773/169482990-680e5b76-b567-4603-a9f5-e730c08ad375.png)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**검색영역** : 텍스트 입력이 되면 diary:contents, diary:title중에 해당 텍스트가 포함된 일기만 표기됩니다.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![검색바2](https://user-images.githubusercontent.com/72931773/169482635-44efea2a-3b72-410b-a03e-bed11c62e195.gif)
 
-### `npm test`
+**일기 영역**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+상단에  diary:title, 중간에 diary:contents, 하단에 diary:created_at이 표기됩니다. diary:contents는 총 3줄까지 표기됩니다. 
 
-### `npm run build`
+![image](https://user-images.githubusercontent.com/72931773/169483196-6fa7ac19-6b5a-4cc1-901b-db531c131e4c.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+10개씩 페이징되며 스크롤(혹은 로드된 아이템중 맨마지막 아이템이 화면에 표기될때 다음 10개의 일기를 화면에 표기됩니다.) 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![무한스크롤](https://user-images.githubusercontent.com/72931773/169482647-1cba1893-5bc6-4e9d-9d3d-1b2a25bff47a.gif)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 페이지 2
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+일기를 하나 클릭하였을 경우 페이지2 형식으로 화면에 표기됩니다. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+일기 제목 - 일기 내용 - 작성일자 순으로 표기되고 일기 내용 부분만 스크롤 됩니다.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![닫기](https://user-images.githubusercontent.com/72931773/169482638-3da56cff-b564-41b6-9acf-08ead3797c8d.gif)
 
-## Learn More
+### 페이지 3
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+기본화면(페이지1)에서 10초 이상 머무르게되면 데이터가 변환됩니다.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+기존 로드되어 있는 데이터와 created_at으로 비교하여 더 최신 일기가 있을 경우 상단에 “새로운 일기가 n개(새롭게 파악한 갯수만큼) 추가되었습니다.”라는 메시지를 출력합니다. 
+
+![May-20-2022 17-00-49](https://user-images.githubusercontent.com/72931773/169482590-45e6286b-d322-4e12-9df6-2d44d7728236.gif)
+
