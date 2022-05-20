@@ -1,12 +1,15 @@
-import React, { ChangeEvent, useRef, useState } from 'react';
-import { DiaryList, Searchbar } from '..';
-import { DiaryListType, DiaryType } from '../../types/dataType';
+import { useRef, useState, ChangeEvent } from 'react';
+import { UpdatedDiariesType } from 'container/DiaryListContainer';
+import { DiaryListType, DiaryType } from 'types/dataType';
+import { DiaryList, Searchbar } from 'components';
+import { NewUpdatedAlertWrapper } from './DiaryApp.styled';
 
 interface DiaryAppProps {
   allDiaries: DiaryListType;
+  updatedDiaries: UpdatedDiariesType;
 }
 
-const DiaryApp = ({ allDiaries }: DiaryAppProps) => {
+const DiaryApp = ({ allDiaries, updatedDiaries }: DiaryAppProps) => {
   /* search input value ------------------------------------------------------ */
   // input ref 객체
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -24,7 +27,8 @@ const DiaryApp = ({ allDiaries }: DiaryAppProps) => {
   };
 
   /* filter diary ------------------------------------------------------------ */
-  const filteredDiaries = allDiaries.filter(
+  // container에서 null인 경우의 예외처리가 되었으므로 타입 단언 사용
+  const filteredDiaries = allDiaries!.filter(
     (diary: DiaryType) =>
       diary.title.includes(searchValue) || diary.contents.includes(searchValue)
   );
@@ -37,6 +41,18 @@ const DiaryApp = ({ allDiaries }: DiaryAppProps) => {
         onChageInput={handleChangeInput}
         onClickResetButton={handleClickResetButton}
       />
+      {/* 새로운 데이터가 업데이트 시 렌더링 */}
+      {updatedDiaries?.length && (
+        <NewUpdatedAlertWrapper>
+          <p>
+            새로운 데이터가
+            <span className="highlight">
+              {' ' + updatedDiaries.length + ' '}
+            </span>
+            개 있습니다.
+          </p>
+        </NewUpdatedAlertWrapper>
+      )}
       <DiaryList diaries={searchValue ? filteredDiaries : allDiaries} />
     </>
   );
