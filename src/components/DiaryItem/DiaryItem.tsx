@@ -1,4 +1,3 @@
-import { UpdatedDiariesType } from 'container/DiaryListContainer';
 import React from 'react';
 import { DiaryType } from 'types/dataType';
 import { dateToStringKr } from 'utils/date';

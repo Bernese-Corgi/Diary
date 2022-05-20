@@ -95,6 +95,8 @@ export const GlobalStyle = createGlobalStyle`
   html {
     font-size: 14px;
     color: ${theme.colors.black.dark};
+    height: 100%; 
+    overflow: hidden;
   }
   body,
   body *,
@@ -109,6 +111,8 @@ export const GlobalStyle = createGlobalStyle`
     font-family:  'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    height: 100%; 
+    overflow: hidden;
   }
   a {
     color: inherit;

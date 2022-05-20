@@ -10,9 +10,12 @@ import {
 import { DiaryListType, DiaryType } from 'types/dataType';
 import { LoadingWrapper, DiaryListWrapper } from './DiaryList.styled';
 import { DiaryDetail, DiaryItem } from 'components';
+import { NewUpdatedAlertWrapper } from 'components/DiaryApp/DiaryApp.styled';
+import { UpdatedDiariesType } from 'container/DiaryListContainer';
 
 interface DiaryListProps {
   diaries: DiaryListType;
+  updatedDiaries: UpdatedDiariesType;
 }
 
 export interface InfinteLoadingProps {
@@ -33,7 +36,7 @@ const InfinteLoading = forwardRef<HTMLDivElement, InfinteLoadingProps>(
   }
 );
 
-const DiaryList = ({ diaries }: DiaryListProps) => {
+const DiaryList = ({ diaries, updatedDiaries }: DiaryListProps) => {
   /* click diary ------------------------------------------------------------- */
   // 일기 상세 컴포넌트 렌더링 여부
   const [hasDiaryDetail, setHasDiaryDetail] = useState<boolean>(false);
@@ -172,29 +175,46 @@ const DiaryList = ({ diaries }: DiaryListProps) => {
     // skip 값이 변경될 때마다 observer를 설정한다.
   }, [scrollOpt.skip]);
 
+  // {/* 새로운 데이터가 업데이트 시 렌더링 */}
   return (
-    <DiaryListWrapper ref={observerRoot}>
-      {!hasDiaryDetail ? (
-        <>
-          {pagingDiaries && (
-            <ul className="diaryList">
-              {pagingDiaries.map((diary: DiaryType, i: number) => (
-                <DiaryItem
-                  key={i}
-                  diary={diary}
-                  // 일기 리스트의 아이템을 클릭하면 제목 정보를 전달한다
-                  onClick={() => handleClickItem(diary.title)}
-                />
-              ))}
-            </ul>
-          )}
-          {/* Intersectioin Observer가 주시하는 타겟. 로딩 아이콘을 렌더링한다. */}
-          <InfinteLoading ref={observerTarget} isLoading={scrollOpt.loading} />
-        </>
-      ) : (
-        <DiaryDetail diary={matchDiary} onClose={handleCloseDiary} />
+    <div>
+      {updatedDiaries?.length && (
+        <NewUpdatedAlertWrapper>
+          <p>
+            새로운 데이터가
+            <span className="highlight">
+              {' ' + updatedDiaries.length + ' '}
+            </span>
+            개 있습니다.
+          </p>
+        </NewUpdatedAlertWrapper>
       )}
-    </DiaryListWrapper>
+      <DiaryListWrapper ref={observerRoot}>
+        {!hasDiaryDetail ? (
+          <>
+            {pagingDiaries && (
+              <ul className="diaryList">
+                {pagingDiaries.map((diary: DiaryType, i: number) => (
+                  <DiaryItem
+                    key={i}
+                    diary={diary}
+                    // 일기 리스트의 아이템을 클릭하면 제목 정보를 전달한다
+                    onClick={() => handleClickItem(diary.title)}
+                  />
+                ))}
+              </ul>
+            )}
+            {/* Intersectioin Observer가 주시하는 타겟. 로딩 아이콘을 렌더링한다. */}
+            <InfinteLoading
+              ref={observerTarget}
+              isLoading={scrollOpt.loading}
+            />
+          </>
+        ) : (
+          <DiaryDetail diary={matchDiary} onClose={handleCloseDiary} />
+        )}
+      </DiaryListWrapper>
+    </div>
   );
 };
 

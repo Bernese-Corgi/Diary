@@ -5,3 +5,7 @@ export type DiaryType = {
 };
 
 export type DiaryListType = DiaryType[] | null;
+
+export type DiaryListDataType = {
+  diary: DiaryListType;
+};
